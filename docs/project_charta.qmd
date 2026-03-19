@@ -54,7 +54,7 @@ The project involves several stakeholders with different roles and expectations:
 
 These stakeholders are connected through the visualization product: the project team develops it, lecturers evaluate it, and users interact with it to gain insights.
 
-![Stakeholder Map](pics/Stakeholder_Map.png){#fig-project-overview}
+![Stakeholder Map](pics/Stakeholder_Map.PNG){#fig-project-overview}
 
 ## User Analysis
 
