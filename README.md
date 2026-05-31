@@ -14,11 +14,11 @@ The project is developed as part of a data visualization course and emphasizes r
 
 ## Links
 
-- Streamlit dashboard: `PASTE_STREAMLIT_LINK_HERE`
+- Streamlit dashboard: `https://ad24-8-fancyproject-dxahz6jyzbujrfw9wcuqwn.streamlit.app`
 
 - Quarto documentation: `https://podsv-fs26-ad24.github.io/ad24-8-fancyproject/`
 
-- GitHub repository: `PASTE_REPOSITORY_LINK_HERE`
+- GitHub repository: `https://github.com/podsv-fs26-ad24/ad24-8-fancyproject`
 
 ## Project Organisation
 
