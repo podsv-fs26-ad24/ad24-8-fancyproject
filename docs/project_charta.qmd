@@ -258,6 +258,10 @@ gantt
 
 See [Mermaid syntax for Gantt charts](https://mermaid.js.org/syntax/gantt.html). It might not be displayed correctly in Safari &#8594; use Chrome. [Live editor with export functionality](https://mermaid.live/)
 
+## Use of AI Tools
+
+During the project, ChatGPT was used as a supporting tool for brainstorming, wording, code debugging, dashboard refinement, and documentation editing. The project team remained responsible for all final decisions, data processing, visualization design, code implementation, interpretation of results, and submitted content.
+
 ## Roles and Contact Details
 
 The project is developed by the three team members:
