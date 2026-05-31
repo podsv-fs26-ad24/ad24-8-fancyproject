@@ -133,3 +133,9 @@ dmypy.json
 
 /.quarto/
 **/*.quarto_ipynb
+
+data_acquisition/Raw/traffic_accidents_zh_2011_2025.csv
+.venv/
+.venv_clean/
+README.html
+README_files/

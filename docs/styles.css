@@ -1,1 +1,44 @@
-/* css styles */
+body {
+    background-color: #0B1020;
+    color: #E2E8F0;
+  }
+  
+  main.content {
+    background-color: #0B1020;
+  }
+  
+  h1, h2, h3, h4, h5 {
+    color: #FFFFFF;
+  }
+  
+  p, li {
+    color: #CBD5E1;
+  }
+  
+  a {
+    color: #F59E0B;
+  }
+  
+  a:hover {
+    color: #FBBF24;
+  }
+  
+  .navbar,
+  .sidebar,
+  #quarto-sidebar {
+    background-color: #111827 !important;
+  }
+  
+  pre,
+  code {
+    background-color: #111827;
+    color: #E2E8F0;
+  }
+  
+  table {
+    color: #E2E8F0;
+  }
+  
+  img {
+    border-radius: 8px;
+  }

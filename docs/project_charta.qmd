@@ -1,177 +1,212 @@
 # Project Charta
+
 ## Context and Scope
-Meteorites are fragments of asteroids or other celestial bodies that reach the Earth’s surface. Studying them can provide useful information about the composition and history of our solar system. The NASA Meteorite Landings dataset contains records of meteorites that have been found or observed falling in different parts of the world. The dataset includes information such as the meteorite name, class, mass, year of discovery, and geographic coordinates.
 
-The aim of this project is to analyze this dataset and communicate the most interesting patterns through clear and effective visualizations. In particular, the project will explore how meteorite discoveries are distributed across different regions of the world and how the number of recorded meteorites has changed over time. It will also look at characteristics such as meteorite mass and classification.
+Road traffic accidents are an important public safety issue, as they affect mobility, urban planning, insurance risk, and the daily lives of citizens. Understanding when, where, and under which conditions accidents occur can support safer transport systems and help communicate relevant patterns to both expert and non-expert audiences. The dataset *Polizeilich registrierte Verkehrsunfälle im Kanton Zürich seit 2011* contains police-recorded road traffic accidents in the Canton of Zurich since 2011. It includes variables such as accident type, severity category, road type, involvement of pedestrians, bicycles and motorcycles, time information, and accident location coordinates.
 
-The project will try to answer questions such as: Where are meteorites most commonly found? How has the number of discoveries evolved over the years? Are certain types of meteorites more common than others?
+The aim of this project is to analyze this dataset and communicate relevant accident patterns through clear and effective visualizations. In particular, the project explores how traffic accidents are distributed across the canton, how accident frequency changes over time, which accident types are most common, when accidents occur during the week, how vulnerable road users are involved, and how accident severity differs across road types. The project also includes a spatial hotspot view based on accident coordinates.
 
-The final visualization product will be published as a GitHub Pages website generated from the project’s Quarto repository, where the analysis, visualizations, and documentation will be available.
+The project will try to answer questions such as: Where do traffic accidents concentrate in the Canton of Zurich? How has the number of recorded accidents changed over time? When do accidents peak during the week? Which vulnerable road users are involved in which accident types? How does severity differ by road type? Which areas or conditions may be relevant for traffic safety planning or insurance risk analysis?
+
+The final visualization product will be an interactive Streamlit dashboard. The project documentation, data processing, design rationale and supporting reports will be published as a GitHub Pages website generated from the project’s Quarto repository.
 
 ## Project Objectives and Success Criteria
 
-The project's primary objective is to help users discover and understand patterns in global meteorite landings through clear and interactive visualizations. Users should be able to explore how meteorite landings are distributed geographically, how they have changed over time, and which physical characteristics (e.g., mass, classification) are most relevant.
+The project's primary objective is to help users discover and understand patterns in road traffic accidents in the Canton of Zurich through a clear and interactive dashboard. Users should be able to understand how accidents are distributed geographically, how accident counts vary over time, when accidents occur during the week, how vulnerable road users are involved, which accident types are frequent, and how accident severity differs across road types.
 
-The final product aims to provide clarity, simplicity, and reproducibility of the presented information for stakeholders (such as lecturers and exploratory data analysts). All results should be traceable back to the project repository, ensuring transparent data processing.
+The final product aims to provide clarity, usability, and reproducibility for stakeholders such as lecturers, traffic safety planners, insurance risk analysts, and exploratory data users. All results should be traceable back to the project repository, ensuring transparent data processing.
 
 ### Success Criteria
 
 #### Qualitative Criteria
-- The visualization enables users to understand the global distribution of meteorite landings.
-- Users can identify periods of higher and lower meteorite occurrences over time.
-- The interface is intuitive and usable for users with low to moderate data literacy.
-- The visualization communicates insights effectively without requiring technical expertise.
+
+- The dashboard enables users to understand the geographic distribution of traffic accidents in the Canton of Zurich.
+- Users can identify periods of higher and lower accident frequency over time.
+- Users can understand recurring weekday-hour patterns in accident frequency.
+- Users can compare vulnerable road user involvement and frequent accident types.
+- Users can understand the distribution of accident severity by road type.
+- The interface is intuitive and usable for users with moderate data literacy.
+- The visualization communicates accident patterns effectively without requiring users to inspect the raw dataset.
 
 #### Quantitative Criteria
 
-- Users can identify the three regions with the highest meteorite density within 10 seconds.
-- At least three different visualizations are provided.
+- Users can identify the main spatial hotspot area within 10 seconds.
+- At least six different visualization views are provided.
 - At least 80% of test users correctly answer predefined analytical questions.
 - The project is fully reproducible, with data cleaning and processing documented in the repository.
-- The visualization is successfully published via GitHub Pages and loads within three seconds on a standard computer.
+- The visualization product is published online and loads within three seconds on a standard computer.
 
 ### Out of Scope
 
-- No predictive modelling or real-time data integration.
-- Focus on desktop use only (no mobile optimization).
-- No scientific interpretation beyond exploratory analysis.
+- No predictive modelling or real-time accident monitoring.
+- No causal claims about why accidents happen beyond exploratory analysis.
+- No real-time data integration.
+- No official operational recommendation for police deployment, speed controls or insurance pricing.
+- No mobile optimization beyond basic browser accessibility.
+- No conversion of CHLV95 coordinates into a full geographic basemap unless time allows.
 
 ## Stakeholder Analysis
 
 The project involves several stakeholders with different roles and expectations:
 
 - **Lecturers (primary stakeholders)**  
-  Evaluate the project and expect a clear, well-structured, and reproducible data visualization product.
+  Evaluate the project and expect a clear, well-structured, reproducible and well-documented data visualization product.
 
 - **Students / Project team (developers)**  
-  Responsible for data analysis, visualization design, and implementation of the final product.
+  Responsible for data acquisition, data cleaning, exploratory analysis, visualization design, dashboard implementation and documentation.
 
-- **General users (e.g., students, data enthusiasts)**  
-  Use the visualization to explore meteorite data and gain insights in an intuitive way.
+- **Traffic safety planners / police decision-makers**  
+  Use the dashboard to explore accident hotspots, time patterns, severity patterns and vulnerable road user involvement.
 
-- **Scientific community / data providers (indirect stakeholders)**  
-  Provide the dataset and benefit from correct representation and interpretation of the data.
+- **Insurance risk analysts**  
+  Use the dashboard to explore accident exposure, frequent accident types, severity patterns and spatial concentrations.
 
-These stakeholders are connected through the visualization product: the project team develops it, lecturers evaluate it, and users interact with it to gain insights.
+- **Public authorities / data providers (indirect stakeholders)**  
+  Provide the dataset and benefit from correct representation and interpretation of public accident data.
+
+These stakeholders are connected through the visualization product: the project team develops it, lecturers evaluate it, and applied users can use it to explore accident patterns and support evidence-based discussions.
 
 ![Stakeholder Map](pics/Stakeholder_Map.PNG){#fig-project-overview}
 
 ## User Analysis
 
 ### Persona 1: Laura Bianchi
+
 ::: {.grid}
 ::: {.g-col-8}
 **Name:** Laura Bianchi  
-**Age:** 24  
-**Role:** Data science student  
-**Domain expertise:** Medium (basic knowledge of data analysis and statistics)  
-**Data literacy:** Medium–high  
-**Technical environment:** Laptop (13–15”), uses Python, Jupyter, web dashboards  
-**Frequency of use:** Weekly (for assignments/projects)  
+**Age:** 46  
+**Role:** Head of traffic police operations  
+**Domain expertise:** High (traffic safety, road monitoring and operational planning)  
+**Data literacy:** Medium (uses reports, maps and operational dashboards)  
+**Technical environment:** Desktop computer at work, laptop during coordination meetings  
+**Frequency of use:** Weekly or before planning meetings  
 :::
 
 ::: {.g-col-4}
 ![](pics/Laura.png){width=65%}
 :::
 :::
+
 **User tasks (jobs):**  
-Laura aims to use the visualization as a tool to explore and analyse patterns in meteorite landings for her coursework. She is interested in identifying trends over time and comparing meteorite characteristics such as mass and classification. Through the interactive visualizations, she aims to support her academic work, including assignments and presentations, by extracting meaningful insights from the dataset in a more efficient and intuitive way than working with raw data alone.
+Laura aims to use the dashboard to support traffic safety planning in the Canton of Zurich. She wants to identify where accidents concentrate, when accident frequency is highest, and which road types show more severe outcomes. The spatial hotspot view helps her understand where monitoring, patrol presence or speed-control discussions may be most relevant. The time-based views help her compare accident pressure across years, months, weekdays and hours, while the severity and road-user charts support decisions about targeted prevention measures.
 
 **Pains:**  
-- Raw dataset is large and difficult to interpret (thousands of records)  
-- Hard to identify trends without visualization  
-- Geographic patterns are not obvious in tabular data  
+
+- Accident data is large and difficult to translate into operational priorities.
+- It is hard to compare accident hotspots, time patterns and severity levels from tables alone.
+- Planning controls or patrol presence requires quick evidence about where and when accidents concentrate.
+- Rare but severe outcomes can be hidden when only total accident counts are considered.
 
 **Gains:**  
-- Clear visualizations showing trends over time (e.g. increase in discoveries)  
-- Interactive map to explore meteorite locations worldwide  
-- Ability to filter data by year, type, or mass for deeper analysis  
+
+- Clear overview of accident trends, hotspots and peak time windows.
+- Ability to compare severity by road type for safety planning discussions.
+- Faster identification of locations and periods that may need more monitoring or prevention measures.
+- Evidence-based support for internal communication and planning meetings.
 
 ---
 
 ### Persona 2: Johannes Schmidt
+
 ::: {.grid}
 ::: {.g-col-8}
 **Name:** Johannes Schmidt  
-**Age:** 72  
-**Role:** Curious non-expert user  
-**Domain expertise:** Low (no background in astronomy or data analysis)  
-**Data literacy:** Low–medium  
-**Technical environment:** Laptop or mobile device  
-**Frequency of use:** Occasional (browsing or curiosity-driven)  
+**Age:** 52  
+**Role:** Insurance risk analyst  
+**Domain expertise:** Medium–high (risk assessment, claims analysis and portfolio monitoring)  
+**Data literacy:** High  
+**Technical environment:** Desktop computer, business intelligence tools, spreadsheets and web dashboards  
+**Frequency of use:** Monthly or during risk review cycles  
 :::
 
 ::: {.g-col-4}
 ![](pics/Johannes.png){width=65%}
 :::
 :::
+
 **User tasks (jobs):**  
-Johannes aims to use the visualization to satisfy his curiosity about meteorites in an easy and engaging way. He wants to quickly understand where meteorites are commonly found and discover interesting patterns without needing technical knowledge. The visualization helps him gain a general overview of the data and learn new facts through simple, visually appealing representations that require minimal effort to interpret.
+Johannes aims to use the dashboard to explore accident exposure in the Canton of Zurich from an insurance risk perspective. He wants to understand where accidents are concentrated, which accident types occur most frequently, how vulnerable road users are involved, and how severity differs across road types. The dashboard helps him compare accident patterns across time, location and severity without working directly with the raw dataset. This supports exploratory risk assessment, internal reporting and discussions about areas or conditions with higher accident exposure.
 
 **Pains:**  
-- Complex charts are confusing or intimidating  
-- Too much technical detail reduces engagement  
-- Difficult to interpret scientific datasets  
+
+- Raw accident records are too detailed for quick portfolio-level interpretation.
+- Spatial concentration and severity patterns are difficult to assess without visual aggregation.
+- Accident type and road-user involvement patterns are hard to compare from raw tables.
+- Risk discussions require concise visual evidence rather than long data extracts.
 
 **Gains:**  
-- Simple and intuitive visualizations (especially maps and clear charts)  
-- Short explanations highlighting key insights  
-- Visually engaging and interactive interface that encourages exploration
+
+- Quick identification of accident concentrations and high-exposure areas.
+- Clear comparison of accident types and vulnerable road user involvement.
+- Better understanding of severity composition across road types.
+- Visual material that can support internal risk reviews and reporting.
+
+---
 
 _The persona images used in this document are illustrative only and were generated with ChatGPT to visually support the persona descriptions._
 
 ## Situation Assessment
-The project is based on the NASA Meteorite Landings dataset, which contains records of meteorites found or observed falling on Earth. The dataset includes information such as meteorite name, classification, mass, year of discovery, and geographic coordinates. It meets the project requirements by providing more than 100 observations and a mix of numerical and categorical variables.
+
+The project is based on the dataset *Polizeilich registrierte Verkehrsunfälle im Kanton Zürich seit 2011*, which contains police-recorded road traffic accidents in the Canton of Zurich. The dataset includes information such as accident type, severity category, road type, year, month, weekday, hour, involvement of pedestrians, bicycles and motorcycles, municipality codes, and geographic coordinates. It meets the project requirements by providing substantially more than 100 observations and a rich combination of numerical, categorical, and boolean variables.
 
 The project will be developed by the project team (Thomas, Ale, Neil). Collaboration and version control will be managed through a shared GitHub repository, which will also contain the documentation and reproducible analysis.
 
-The analysis and visualizations will be created using Python and the tools introduced in the course, while the documentation will be written as a Quarto project and published online using GitHub Pages. These tools ensure transparency, reproducibility, and accessibility of the results.
+The data processing and visualizations will be created using Python. The final dashboard will be implemented with Streamlit, while the documentation will be written as a Quarto project and published online using GitHub Pages. These tools ensure transparency, reproducibility, and accessibility of the results.
 
-The main constraint of the project is the limited timeframe of the course, which requires the analysis, visualization design, and documentation to be completed within the semester. Another limitation is that the dataset is historical and observational, meaning that some records may contain missing values or inconsistencies.
+The main constraint of the project is the limited timeframe of the course, which requires the analysis, visualization design, dashboard implementation, and documentation to be completed within the semester. Another limitation is that the dataset is observational and administrative, meaning that some records may contain missing values, inconsistent categories across time, or limited contextual information about accident causes.
 
-Possible risks include data quality issues (such as incomplete or inconsistent records), technical challenges during the development of visualizations, and coordination challenges within the team. These risks will be addressed through data cleaning, regular collaboration within the team, and the use of version control through GitHub.
+Possible risks include data quality issues such as incomplete time information or category handling, technical challenges during the development of spatial visualizations, and coordination challenges within the team. These risks will be addressed through data cleaning, regular collaboration within the team, and the use of version control through GitHub.
 
 ## Visualization Concept
 
-The proposed visualization product is designed to address the needs of both primary and secondary users identified in the user analysis, particularly a data-aware student (Laura) and a non-expert curious user (Johannes).
+The proposed visualization product is designed to address the needs of the applied user groups identified in the user analysis, particularly a traffic police decision-maker (Laura) and an insurance risk analyst (Johannes).
 
-**Product form:**
-The final product will be an interactive web-based dashboard developed in Quarto and published via GitHub Pages. The dashboard allows both exploration and guided understanding of meteorite data.
+**Product form:**  
+The final product will be an interactive Streamlit dashboard. The dashboard allows users to filter the accident data by year range, severity category, road type, accident type and vulnerable road user involvement. Supporting documentation will be embedded in the Quarto project and published via GitHub Pages.
 
-**Visual encodings:**
-- A world map to display the geographic distribution of meteorite landings
-- A line chart to show the number of meteorites discovered over time
-- A bar chart to compare meteorite classes
-- A scatter plot to analyze the relationship between mass and year
+**Visual encodings:**  
 
-**Interactivity:**
-- Filters by year range and meteorite class
-- Hover tooltips with detailed information (name, mass, year, location)
-- Zoom and pan functionality on the map
-- Linked views (e.g. filtering updates multiple charts)
+- A line chart to show the number of accidents over time.
+- A monthly drill-down chart to show seasonal patterns for a selected year.
+- A heatmap to analyze accident frequency by weekday and hour.
+- A bar chart to compare accidents involving pedestrians, bicycles and motorcycles.
+- A stacked horizontal bar chart to compare accident types by vulnerable road user group.
+- A stacked bar chart to compare accident severity by road type.
+- A spatial hotspot view to display accident concentrations using CHLV95 coordinates.
 
-**Narrative and annotation:**
-Short textual explanations will guide users through key findings (e.g. trends over time or concentration in specific regions). Important insights will be highlighted using annotations.
+**Interactivity:**  
 
-**Target medium and integration:**
-The visualization will be embedded in a web-based Quarto project and published as a GitHub Pages website, making it accessible to a wide audience.
+- Filters by year range, severity category, road type and accident type.
+- Filter by vulnerable road user involvement.
+- Hover tooltips for detailed values.
+- A monthly drill-down year selector.
+- Legend-based selection in stacked charts.
+- Zooming in the spatial hotspot view.
+- Multi-select focus options for hotspot categories such as severe injuries, fatal accidents, pedestrian involvement, bicycle involvement and motorcycle involvement.
+
+**Narrative and annotation:**  
+Short textual explanations guide users through the dashboard sections. The dashboard starts with overall accident volume, then moves to time patterns, vulnerable road users, accident types, severity by road type and spatial hotspots. The goal is to support fast interpretation without overloading the interface with long explanatory text.
+
+**Target medium and integration:**  
+The visualization product will be made available online as a Streamlit dashboard. The project documentation, data report, design report and evaluation report will be published as a web-based Quarto project via GitHub Pages.
 
 ---
 
 ### Value
 
-**Cognitive and analytical value:**
-The combination of map and charts allows users to quickly identify spatial patterns, temporal trends, and relationships between variables. Interactivity supports deeper exploration and comparison.
+**Cognitive and analytical value:**  
+The combination of filters and charts allows users to identify spatial patterns, temporal trends, accident type distributions, vulnerable road user involvement and severity differences. The dashboard supports exploratory analysis while keeping the visual structure simple.
 
-**Communicative value:**
-Clear visual structure and simple chart types ensure that both expert and non-expert users can understand the key insights without needing to interpret raw data tables.
+**Communicative value:**  
+Clear titles, concise descriptions and familiar chart types help users understand key accident patterns without needing to inspect raw data tables. This supports both internal project communication and applied decision-oriented discussions.
 
-**Experiential and aesthetic value:**
-An interactive and visually clean design increases engagement and encourages users to explore the data. Simple navigation and intuitive controls build trust and usability.
+**Experiential and aesthetic value:**  
+A consistent dark visual style, readable labels, hover information and structured sections make the dashboard engaging and usable. The interface supports exploration while remaining focused on the main analytical questions.
 
 ---
 
-The concept directly addresses user needs by simplifying complex data (reducing pains), enabling exploration (supporting jobs), and providing clear and engaging insights (creating gains).
+The concept directly addresses user needs by simplifying complex data, reducing the effort required to find relevant patterns, enabling focused exploration, and providing clear visual evidence for planning and risk analysis discussions.
 
 ---
 
@@ -183,13 +218,13 @@ The project is divided into four main phases aligned with the course deadlines:
 Definition of the project scope, stakeholder and user analysis, and completion of the project charta before the draft submission.
 
 **Data Acquisition and Exploration:**  
-Collection, cleaning, and exploration of the meteorite dataset to identify relevant variables and patterns.
+Collection, cleaning, and exploration of the traffic accident dataset to identify relevant variables and patterns.
 
 **Visualization Design:**  
-Development of visualizations and dashboard components, including maps and charts, aligned with intermediate assignments.
+Development of visualizations and the dashboard structure, including temporal charts, categorical charts, severity views and spatial hotspot views, aligned with intermediate assignments.
 
 **Evaluation and Delivery:**  
-Refinement of the visualization product, preparation of the final presentation, and final submission.
+Refinement of the visualization product, preparation of the final presentation, online publication, and final submission.
 
 ```{mermaid}
 %%| label: fig-project-plan
@@ -236,5 +271,5 @@ The project is developed by the three team members:
   Contact: pucinale@students.zhaw.ch
 
 - **Neil** – Visualization design and dashboard integration  
-  Tasks: chart design, map implementation, dashboard layout, GitHub Pages publication  
+  Tasks: chart design, dashboard layout, Streamlit implementation, GitHub Pages documentation support  
   Contact: schranei@students.zhaw.ch

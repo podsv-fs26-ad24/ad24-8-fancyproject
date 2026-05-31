@@ -1,139 +1,298 @@
-# Sample Project
-This is a template for a data visualization project using Python, uv for environment and package management and Quarto for documentation.
+# Zurich Traffic Accident Visualization Dashboard
 
-To adapt to your individual project change `sample` to the respective project name in the commands below
+This repository contains a data visualization project based on police-recorded road traffic accidents in the Canton of Zurich. The project analyzes accident patterns from 2011 to 2025 and communicates the results through an interactive Streamlit dashboard and a Quarto documentation website.
 
-Adapt the `LICENSE` as required.
+The dashboard helps users explore:
 
-> To do: Provide a brief description of the project here.
+- accident trends over time
+- monthly and weekday-hour patterns
+- accident types and vulnerable road user involvement
+- accident severity by road type
+- spatial accident hotspots based on CHLV95 coordinates
+
+The project is developed as part of a data visualization course and emphasizes reproducibility, traceability and clear visual communication.
 
 ## Project Organisation
+
 The visualization product development is organised according to the following process model:
 
 ![The visualization product development process](docs/pics/vizproductprocess.png)
 
-Code and configurations used in the different project phases are stored in the correspoding subfolders. Documentation artefacts in the form of a Quarto project are provided in `docs`.
+Code and configurations used in the different project phases are stored in the corresponding subfolders. Documentation artefacts are provided as a Quarto project in `docs`.
 
-| Phase | Code folders | Documentation section | `docs`-File |
-|:-------|:---|:---|:---|
-| Project Understanding | -  | Project Charta | project_charta.qmd  |
-| Data Acquisition and Exploration | `eda` | Data Report | data_report.qmd  |
-| Visual Encoding and Design | `encoding-design`  | Visual Encoding and Design | viz_encoding_design.qmd  |
-| Evaluation | `evaluation`  | Evaluation | evaluation.qmd  |
-| Deployment | `deployment` | Deployment | deplyoment.qmd |
+| Phase | Code folders / files | Documentation section | `docs` file |
+|:---|:---|:---|:---|
+| Project Understanding | - | Project Charta | `project_charta.qmd` |
+| Data Acquisition and Exploration | `data_acquisition/Data_analysis` | Data Report | `data_report.qmd` |
+| Visual Encoding and Design | `data_acquisition/viz_design` | Visualization Design Report | `viz_design_report.qmd` |
+| Dashboard Implementation | `app/streamlit_app.py` | Deployment | `deployment.qmd` |
+| Evaluation | - | Evaluation Report | `evaluation_report.qmd` |
+| Deployment | `app`, `.github/workflows` | Deployment | `deployment.qmd` |
 
+Important project files:
 
-> To do: Adjust accoding to your specific project needs - ensure consistency with readme, documentation, etc.
+```text
+app/streamlit_app.py
+data_acquisition/Raw/traffic_accidents_zh_2011_2025.csv
+data_acquisition/Processed/traffic_accidents_zh_clean.csv
+data_acquisition/Data_analysis/01_data_exploration.ipynb
+data_acquisition/viz_design/01_visualizations.ipynb
+docs/project_charta.qmd
+docs/data_report.qmd
+docs/viz_design_report.qmd
+docs/evaluation_report.qmd
+docs/deployment.qmd
+```
 
-> To do: add link to documentation website for convenience.
+The final visualization product is the Streamlit dashboard. The Quarto website contains the project documentation, data report, visualization design report, evaluation report and deployment documentation.
 
+## Data
 
-See section `Quarto Setup and Usage` for instructions on how to build and serve the documentation website using Quarto.
+The raw dataset is the public open government dataset:
+
+*Polizeilich registrierte Verkehrsunfälle im Kanton Zürich seit 2011*
+
+The raw CSV file is stored in:
+
+```text
+data_acquisition/Raw/traffic_accidents_zh_2011_2025.csv
+```
+
+The processed dataset used by the dashboard is stored in:
+
+```text
+data_acquisition/Processed/traffic_accidents_zh_clean.csv
+```
+
+The processed dataset can be recreated by running:
+
+```text
+data_acquisition/Data_analysis/01_data_exploration.ipynb
+```
+
+## Streamlit Dashboard
+
+The dashboard code is located in:
+
+```text
+app/streamlit_app.py
+```
+
+To run the dashboard locally:
+
+```bash
+streamlit run app/streamlit_app.py
+```
+
+If Streamlit is not installed yet:
+
+```bash
+pip install streamlit pandas numpy plotly matplotlib
+```
+
+The dashboard reads the processed dataset from:
+
+```text
+data_acquisition/Processed/traffic_accidents_zh_clean.csv
+```
 
 ## Python Environment Setup and Management with uv
-Make sure to have uv installed: https://docs.astral.sh/uv/getting-started/installation/
 
-After cloning the repository,  create the python environment with all dependencies based on the `.python-version`, `pyproject.toml` and `uv.lock` files by running
+Make sure to have `uv` installed:
+
+```text
+https://docs.astral.sh/uv/getting-started/installation/
+```
+
+After cloning the repository, create the Python environment with all dependencies based on the `.python-version`, `pyproject.toml` and `uv.lock` files by running:
+
 ```bash
 uv sync
 ```
 
-To add new dependencies, use
+To add new dependencies, use:
+
 ```bash
 uv add <package>
 ```
-which will add the package to `pyproject.toml` and update the `uv.lock` file. You can also specify a version, e.g. `uv add pandas==2.0.3`.
 
-Remove packages with
+For example:
+
+```bash
+uv add streamlit plotly pandas numpy matplotlib
+```
+
+Remove packages with:
+
 ```bash
 uv remove <package>
 ```
 
-Commit changes to `pyproject.toml` and `uv.lock` files into version control.
+Commit changes to `pyproject.toml` and `uv.lock` into version control.
 
 Run `uv sync` after pulling changes to update the local environment.
 
-Whenever the python environment is used, make sure to prefix every command that uses python with `uv run`, e.g.
+Whenever the Python environment is used, commands can be prefixed with:
+
+```bash
+uv run
+```
+
+Example:
+
 ```bash
 uv run python script.py
 ```
 
-You can also run
-```bash 
+You can also activate the project Python environment in a terminal session:
+
+```bash
 source .venv/bin/activate
 ```
-to activate the project Python environment in a terminal session in order to avoid having to prefix every command.
 
 ## Runtime Configuration with Environment Variables
-The environment variables are specified in a .env-File, which is never commited into version control, as it may contain secrets. The repo just contains the file `.env.template` to demonstrate how environment variables are specified.
 
-You have to create a local copy of `.env.template` in the project root folder and the easiest is to just rename it to `.env`.
+The repository may contain an `.env.template` file to demonstrate how environment variables are specified. A local `.env` file should not be committed into version control, because it may contain secrets.
 
-The content of the .env-file is then read by the pypi-dependency: `python-dotenv`. Usage:
-```python
-import os
-from dotenv import load_dotenv
-```
-
-`load_dotenv` reads the .env-file and sets the environment variables:
-
-```python
-load_dotenv()
-```
-
-which can then be accessed (assuming the file contains a line `SAMPLE_VAR=<some value>`):
-
-```python
-os.environ['SAMPLE_VAR']
-```
+For this project, no external API keys are required for the main dashboard. The dashboard runs from local CSV data.
 
 ## Quarto Setup and Usage
 
 ### Setup Quarto
 
-1. [Install Quarto](https://quarto.org/docs/get-started/)
-2. Optional: [quarto-extension for VS Code](https://marketplace.visualstudio.com/items?itemName=quarto.quarto)
-3. If working with svg files and pdf output you will need to install rsvg-convert:
-    * On macOS: `brew install librsvg`
-    * On Windows using chocolatey:
-      * [Install chocolatey](https://chocolatey.org/install#individual)
-      * [Install rsvg-convert](https://community.chocolatey.org/packages/rsvg-convert): `choco install rsvg-convert`
+1. Install Quarto:  
+   `https://quarto.org/docs/get-started/`
 
-Source `*.qmd` and configuration files are in the `docs` folder. The Quarto project configuration is in `docs/_quarto.yml`.
+2. Optional: install the Quarto extension for VS Code.
 
-With embedded python code chunks that perform computations, you need to make sure that the python environment is activated when rendering. This can be done by prefixing the render command with `uv run`, e.g.:
+3. If working with SVG files and PDF output, install `rsvg-convert`:
+   - macOS: `brew install librsvg`
+   - Windows with Chocolatey: `choco install rsvg-convert`
+
+Source `.qmd` and configuration files are in the `docs` folder. The Quarto project configuration is in:
+
+```text
+docs/_quarto.yml
+```
+
+### Rendering the Documentation
+
+From the project root, render the documentation with:
+
 ```bash
-uv run quarto render
+quarto render docs
+```
+
+On Alessandro's local machine, Quarto previously had to be forced to use Python 3.12:
+
+```bash
+export QUARTO_PYTHON=/Library/Frameworks/Python.framework/Versions/3.12/bin/python3
+quarto render docs
+```
+
+To preview locally:
+
+```bash
+export QUARTO_PYTHON=/Library/Frameworks/Python.framework/Versions/3.12/bin/python3
+quarto preview docs --no-browser --no-watch-inputs
+```
+
+If Quarto reports missing Python modules such as `yaml` or `jupyter`, install the required packages into the Python version used by Quarto:
+
+```bash
+/Library/Frameworks/Python.framework/Versions/3.12/bin/python3 -m pip install jupyter pyyaml pandas plotly matplotlib numpy
 ```
 
 ### Working on the Documentation
 
-1. Make changes to the `.qmd` source files in the `docs` folder
-2. Make sure the project Python environment is activated (see Python environment setup and management)
-3. Preview locally: `quarto preview` from the `docs` folder
-4. Build the documentation website: `uv run quarto render` from the `docs` folder. This renders to `docs/build`
-5. Check the website locally by opening `docs/build/index.html` in a browser
+1. Make changes to the `.qmd` source files in the `docs` folder.
+2. Make sure the correct Python environment is available.
+3. Preview locally with:
 
-### Deployment of the Documentation to GitHub Pages
+```bash
+quarto preview docs
+```
 
-The documentation website is deployed to GitHub Pages via a GitHub Actions workflow (`.github/workflows/publish.yml`). Every push to `main` triggers the workflow, which renders the Quarto project and deploys the result.
+4. Build the documentation website with:
 
-The setting `execute: freeze: auto` in `_quarto.yml` ensures that Python computations are only executed locally. Results are cached in `docs/_freeze` and checked into the repository, so the GitHub Actions runner does not need Python — it uses the pre-computed results.
+```bash
+quarto render docs
+```
 
-#### Initial Setup (once)
+5. Check the generated website locally in the output folder configured in `docs/_quarto.yml`.
 
-1. In the GitHub repository settings, go to **Settings > Pages** and set the source to **GitHub Actions**
-2. Render locally so that `_freeze` contains cached computation results:
-   ```bash
-   cd docs && uv run quarto render
-   ```
-3. Push the changes to `main`
+## Deployment
 
-The `_freeze` directory and the workflow file `.github/workflows/publish.yml` should already be tracked in the repository.
+The project has two deployment targets:
 
+1. **Quarto documentation website**  
+   Published via GitHub Pages.
 
-#### Publishing Updates
+2. **Streamlit dashboard**  
+   Published via Streamlit Community Cloud or run locally from `app/streamlit_app.py`.
 
-1. Build the website locally: `uv run quarto render` from the `docs` folder. This updates `docs/build` (gitignored) and `docs/_freeze` (checked in)
-2. Check the website locally by opening `docs/build/index.html`
-3. Commit and push all updated files (including `docs/_freeze`) to `main`. The GitHub Actions workflow will render and deploy the site automatically
+The Quarto documentation explains the project context, data processing, visualization design, evaluation and deployment. The Streamlit dashboard is the interactive visualization product.
+
+## GitHub Pages Deployment
+
+The documentation website can be deployed to GitHub Pages via a GitHub Actions workflow.
+
+Recommended setup:
+
+1. In the GitHub repository settings, go to **Settings > Pages**.
+2. Set the source to **GitHub Actions**.
+3. Render the Quarto project locally.
+4. Commit and push the updated documentation files.
+5. GitHub Actions builds and publishes the website.
+
+If the project uses Quarto freeze, cached execution results should be committed so that GitHub Actions can deploy the website reproducibly.
+
+## Streamlit Deployment
+
+To deploy the dashboard on Streamlit Community Cloud:
+
+1. Push the repository to GitHub.
+2. Open Streamlit Community Cloud.
+3. Create a new app from the GitHub repository.
+4. Set the main file path to:
+
+```text
+app/streamlit_app.py
+```
+
+5. Make sure the repository contains the processed CSV file:
+
+```text
+data_acquisition/Processed/traffic_accidents_zh_clean.csv
+```
+
+6. Make sure dependencies are listed in `requirements.txt` or `pyproject.toml`.
+
+A minimal `requirements.txt` should include:
+
+```text
+streamlit
+pandas
+numpy
+plotly
+matplotlib
+```
+
+## Reproducibility
+
+The project is reproducible because:
+
+- the raw dataset location is documented
+- the processed dataset is created from a documented notebook
+- the dashboard reads from the processed CSV file
+- static prototype figures are generated in a notebook
+- the Quarto documentation describes the data, design and evaluation process
+- all code is stored in the GitHub repository
+
+## Team
+
+The project is developed by:
+
+- Thomas — data analysis and exploratory data analysis
+- Alessandro — data cleaning, preprocessing and documentation
+- Neil — visualization design and dashboard integration

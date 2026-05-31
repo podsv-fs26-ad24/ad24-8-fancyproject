@@ -10,7 +10,7 @@ website:
   title: "Sample Project"
   search: true
   sidebar:
-    style: "floating"
+    style: floating
     search: true
     contents:
       - index.qmd
@@ -22,10 +22,9 @@ website:
 
 format:
   html:
-    theme: cosmo
+    theme: darkly
     css: styles.css
     toc: true
-      
 
 number-sections: true
 
