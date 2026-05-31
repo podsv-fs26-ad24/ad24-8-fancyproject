@@ -12,6 +12,14 @@ The dashboard helps users explore:
 
 The project is developed as part of a data visualization course and emphasizes reproducibility, traceability and clear visual communication.
 
+## Links
+
+- Streamlit dashboard: `PASTE_STREAMLIT_LINK_HERE`
+
+- Quarto documentation: `https://podsv-fs26-ad24.github.io/ad24-8-fancyproject/`
+
+- GitHub repository: `PASTE_REPOSITORY_LINK_HERE`
+
 ## Project Organisation
 
 The visualization product development is organised according to the following process model:
@@ -183,7 +191,7 @@ From the project root, render the documentation with:
 quarto render docs
 ```
 
-On Alessandro's local machine, Quarto previously had to be forced to use Python 3.12:
+If Quarto uses the wrong Python version locally, it can be forced to use Python 3.12:
 
 ```bash
 export QUARTO_PYTHON=/Library/Frameworks/Python.framework/Versions/3.12/bin/python3
@@ -268,7 +276,9 @@ data_acquisition/Processed/traffic_accidents_zh_clean.csv
 
 6. Make sure dependencies are listed in `requirements.txt` or `pyproject.toml`.
 
-A minimal `requirements.txt` should include:
+The project environment is managed with `uv`. A minimal `requirements.txt` is included to make Streamlit Community Cloud deployment straightforward.
+
+The `requirements.txt` includes:
 
 ```text
 streamlit
@@ -276,7 +286,6 @@ pandas
 numpy
 plotly
 matplotlib
-```
 
 ## Reproducibility
 
@@ -293,6 +302,6 @@ The project is reproducible because:
 
 The project is developed by:
 
-- Thomas — data analysis and exploratory data analysis
-- Alessandro — data cleaning, preprocessing and documentation
-- Neil — visualization design and dashboard integration
+- Thomas Martinetti — data analysis and exploratory data analysis
+- Alessandro Pucino — data cleaning, preprocessing and documentation
+- Neil Schranz — visualization design and dashboard integration
